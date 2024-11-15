@@ -6,19 +6,36 @@ package graph
 
 import (
 	"context"
-	"fmt"
 
+	"github.com/Somnathumapathi/goraphql/database"
 	"github.com/Somnathumapathi/goraphql/graph/model"
 )
 
-// CreateTodo is the resolver for the createTodo field.
-func (r *mutationResolver) CreateTodo(ctx context.Context, input model.NewTodo) (*model.Todo, error) {
-	panic(fmt.Errorf("not implemented: CreateTodo - createTodo"))
+var db = database.Connect()
+
+// CreateEvent is the resolver for the createEvent field.
+func (r *mutationResolver) CreateEvent(ctx context.Context, input model.CreateEventInput) (*model.Event, error) {
+	return db.CreateEvent(input), nil
 }
 
-// Todos is the resolver for the todos field.
-func (r *queryResolver) Todos(ctx context.Context) ([]*model.Todo, error) {
-	panic(fmt.Errorf("not implemented: Todos - todos"))
+// UpdateEvent is the resolver for the updateEvent field.
+func (r *mutationResolver) UpdateEvent(ctx context.Context, id string, input model.UpdateEventInput) (*model.Event, error) {
+	return db.UpdateEvent(id, input), nil
+}
+
+// DeleteEvent is the resolver for the deleteEvent field.
+func (r *mutationResolver) DeleteEvent(ctx context.Context, id string) (*model.DeleteEventResponse, error) {
+	return db.DeleteEvent(id), nil
+}
+
+// Events is the resolver for the events field.
+func (r *queryResolver) Events(ctx context.Context) ([]*model.Event, error) {
+	return db.GetEvents()
+}
+
+// Event is the resolver for the event field.
+func (r *queryResolver) Event(ctx context.Context, id string) (*model.Event, error) {
+	return db.GetEvent(id), nil
 }
 
 // Mutation returns MutationResolver implementation.

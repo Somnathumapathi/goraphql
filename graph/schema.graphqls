@@ -3,11 +3,11 @@
 # https://gqlgen.com/getting-started/
 
 type Event {
-  _id: ID!,
-  title: STRING!,
-  description: STRING!,
-  venue: STRING!,
-  url: STRING!
+  _id: ID!
+  title: String!
+  description: String!
+  venue: String!
+  url: String!
 }
 
 type Query {
@@ -18,23 +18,23 @@ type Query {
 type Mutation {
   createEvent(input: CreateEventInput!) : Event!
   updateEvent(id: ID!, input: updateEventInput!): Event!
-  deleteEvent(id: ID!), DeleteEventResponse!
+  deleteEvent(id: ID!): DeleteEventResponse!
 }
 
 input CreateEventInput {
-   title: STRING!,
-  description: STRING!,
-  venue: STRING!,
-  url: STRING!
+  title: String!
+  description: String!
+  venue: String!
+  url: String!
 }
 
 input updateEventInput {
-  title: STRING,
-  description: STRING,
-  venue: STRING,
-  url: STRING
+  title: String
+  description: String
+  venue: String
+  url: String
 }
 
 type DeleteEventResponse {
-  deleteEventId: STRING!
+  deleteEventId: String!
 }
