@@ -1,0 +1,40 @@
+# GraphQL schema example
+#
+# https://gqlgen.com/getting-started/
+
+type Event {
+  _id: ID!,
+  title: STRING!,
+  description: STRING!,
+  venue: STRING!,
+  url: STRING!
+}
+
+type Query {
+  events: [Event!]!,
+  event(id: ID!): Event!
+}
+
+type Mutation {
+  createEvent(input: CreateEventInput!) : Event!
+  updateEvent(id: ID!, input: updateEventInput!): Event!
+  deleteEvent(id: ID!), DeleteEventResponse!
+}
+
+input CreateEventInput {
+   title: STRING!,
+  description: STRING!,
+  venue: STRING!,
+  url: STRING!
+}
+
+input updateEventInput {
+  title: STRING,
+  description: STRING,
+  venue: STRING,
+  url: STRING
+}
+
+type DeleteEventResponse {
+  deleteEventId: STRING!
+}
